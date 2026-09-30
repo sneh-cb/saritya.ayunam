@@ -1569,9 +1569,7 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
                 <!-- form fields -->
 
-                <form  onsubmit="return submitForm(event, 'Get in touch')"
-          enctype="multipart/form-data"
-          target="myframe" >
+                <form class="Contact_Us" id="Contact_Us" action="thankyou.php" method="post" autocomplete="on" >
 
 
 
@@ -1583,7 +1581,7 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
                     <div class="form-group">
 
-                      <input class="form-control br-b" type="text" onkeydown="return /[a-zA-Z]/i.test(event.key)"  name="name" id="name" placeholder="Name*" required>
+                      <input class="form-control br-b" type="text"  name="name" id="name" placeholder="Name*">
 
                     </div>
 
@@ -1591,7 +1589,7 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
                     <div class="form-group">
 
-                      <input class="form-control br-b" type="email" name="email" id="email" placeholder="Email*" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" required>
+                      <input class="form-control br-b" type="email" name="email" id="email" placeholder="Email*" >
 
                     </div>
 
@@ -1599,15 +1597,20 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
                     <div class="form-group">
 
-                      <input type="tel" class="form-control br-b" name="phone" id="phone" placeholder="Phone No.*" pattern="[0-9]{10}" required>
+                      <input  type="text" class="form-control br-b"   id="contact_no"
+                name="contact_no"
+                placeholder="Mobile Number *"
+                onkeypress="contact_num_valid(event)"
+                minlength="10"
+                maxlength="15">
 
                     </div>
 
 
 
-                     <div class="form-group">
+                     <!-- <div class="form-group">
 
-                      <select name="lookingfor" required="" class="form-control br-b">
+                      <select name="lookingfor"  class="form-control br-b">
 
                      <option value="" selected disabled>Looking For?*</option>
 
@@ -1634,7 +1637,36 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
                       </select>
 
-                      </div> 
+                      </div>  -->
+
+                      <div class="form-group">
+
+    <select name="lookingfor" id="lookingfor" class="form-control br-b">
+
+        <option value="" selected disabled>Looking For?*</option>
+
+        <option value="3 BHK Flats">3 BHK Flats</option>
+
+        <option value="Shops">Shops</option>
+
+    </select>
+
+</div>
+
+
+<div class="form-group">
+
+    <select name="budget" id="budget" class="form-control br-b">
+
+        <option value="" selected disabled>Budget Range?*</option>
+
+        <option value="95lac to 1cr">95lac to 1cr</option>
+
+        <option value="1cr to 1.05cr">1cr to 1.05cr</option>
+
+    </select>
+
+</div>
 
 
 
@@ -1644,11 +1676,24 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
                   
 
+                    <input id="date" type="hidden"  name="date">
+					<input id="time" type="hidden"  name="time">
+
+        <div class="col-md-12 mb-4">
+            <p id="error_data"></p>
+        </div>
+
                   <!-- submit button -->
 
                   <div class="form-group">
+                    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response">
 
-                    <input type="submit" name="bannerbutton" value="Submit" id="bannerbutton" class="btn btn-sm btn-dark">
+                    <input  type="submit" name="Contact_Us" value="Submit"  class="btn btn-sm btn-dark buttonbutton">
+
+                     <input type="hidden" name="name_of_project" value="Sarita Ayunam">
+            <input type="hidden" name="type_of_form" value="Contact_Us">
+
+            <i class="fa fa-spinner project-btn-icon" id="form_process" style="padding-left:200px;"></i>
 
                   </div>
 
@@ -1818,6 +1863,8 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
   <script src="assets/js/main.js"></script>
 
+  <script src="assets/js/Contact_Us.js"></script>
+
 
 
 
@@ -1841,6 +1888,41 @@ Explore the serene convenient living in the 3 BHK luxurious flat project in Gand
 
 
   <!-- sticky header -->
+
+
+
+  <script>
+
+  jQuery(document).ready(function ($) {
+
+      var now = new Date();
+
+      var day = ("0" + now.getDate()).slice(-2);
+
+      var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+      var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+      $('#date').val(today);
+
+  });
+
+</script>
+
+<script>
+function updateTime() {
+const now = new Date();
+const hours = String(now.getHours()).padStart(2, '0');
+const minutes = String(now.getMinutes()).padStart(2, '0');
+const seconds = String(now.getSeconds()).padStart(2, '0');
+const timeString = `${hours}:${minutes}:${seconds}`;
+document.getElementById('time').value = timeString;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
+</script>
+
 
 
 
