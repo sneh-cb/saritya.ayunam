@@ -301,10 +301,10 @@ else if($status=="0") {
 
 
 
-if($status=="1")
-{
-    include("saritaayunamApiCalls_realtime.php");
-}
+// if($status=="1")
+// {
+//     include("saritaayunamApiCalls_realtime.php");
+// }
 
 
 
