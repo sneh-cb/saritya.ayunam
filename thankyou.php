@@ -102,7 +102,8 @@ if(!preg_match("/[0-9+()]|\./",$contact_no)) {
 	$contact_no="";
 }
 
-$email_message=trim(strip_tags($_POST['message']));
+// $email_message=trim(strip_tags($_POST['message']));
+$email_message = trim(strip_tags($_POST['message'] ?? ''));
 if (strlen($email_message) >= 500)
 {
 	$email_message="";
